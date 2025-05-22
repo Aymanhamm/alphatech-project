@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{{ title }}</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.username|as_crispy_field }}
+                            {{ form.password|as_crispy_field }}
+                            {{ form.user_type|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.profile_picture|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            {{ form.prenom|as_crispy_field }}
+                            {{ form.date_naissance|as_crispy_field }}
+                            {{ form.email|as_crispy_field }}
+                            {{ form.departement|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.nom|as_crispy_field }}
+                            {{ form.telephone|as_crispy_field }}
+                            {{ form.date_embauche|as_crispy_field }}
+                            {{ form.poste|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            {{ form.adresse|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Enregistrer
+                        </button>
+                        <a href="{% url 'employees:employee_list' %}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Retour
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
