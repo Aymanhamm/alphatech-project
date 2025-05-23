@@ -1,7 +1,7 @@
 """
 Django settings for alphatech project.
 """
-
+ 
 from pathlib import Path
 import os
 
@@ -84,10 +84,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'alphatech_db',
-        'USER': 'root',
-        'PASSWORD': '',  # Update with your MySQL root password
+        'USER': 'alphatech_user',
+        'PASSWORD': 'your_password',
         'HOST': 'localhost',
         'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+        },
     }
 }
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.db.models import Q
 from .models import Employee, Departement, Poste
 from .forms import EmployeeForm, DepartementForm, PosteForm

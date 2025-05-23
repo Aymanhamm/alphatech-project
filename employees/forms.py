@@ -22,7 +22,13 @@ class LoginForm(AuthenticationForm):
 class EmployeeForm(forms.ModelForm):
     username = forms.CharField(max_length=150, label="Nom d'utilisateur")
     password = forms.CharField(widget=forms.PasswordInput(), label="Mot de passe")
-    user_type = forms.ChoiceField(choices=User.USER_TYPE_CHOICES, label="Type d'utilisateur")
+    USER_TYPE_CHOICES = [
+    ('admin', 'Administrateur'),
+    ('employee', 'Employé'),
+    ('manager', 'Manager'),
+    # Add other choices as needed
+    ]
+    user_type = forms.ChoiceField(choices=USER_TYPE_CHOICES, label="Type d'utilisateur")
     
     class Meta:
         model = Employee

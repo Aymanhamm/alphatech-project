@@ -1,14 +1,15 @@
 from django.contrib import admin
+#from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Employee, Departement, Poste, Contrat, HistoriqueCarriere, Utilisateur, JournalActivite
+from .models import User, Employee, Departement, Poste, Contrat, HistoriqueCarriere, JournalActivite
 
-@admin.register(User)
-class CustomUserAdmin(UserAdmin):
-    fieldsets = UserAdmin.fieldsets + (
-        ('Type utilisateur', {'fields': ('user_type',)}),
-    )
-    list_display = ['username', 'email', 'user_type', 'is_staff', 'is_active']
-    list_filter = ['user_type', 'is_staff', 'is_active']
+#@admin.register(User)
+#class CustomUserAdmin(UserAdmin):
+#    fieldsets = UserAdmin.fieldsets + (
+#        ('Type utilisateur', {'fields': ('user_type',)}),
+#    )
+#    list_display = ['username', 'email', 'user_type', 'is_staff', 'is_active']
+#    list_filter = ['user_type', 'is_staff', 'is_active']
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
@@ -40,11 +41,7 @@ class HistoriqueCarriereAdmin(admin.ModelAdmin):
     list_filter = ['type_changement', 'date_effet']
     search_fields = ['employee__nom', 'employee__prenom']
 
-@admin.register(Utilisateur)
-class UtilisateurAdmin(admin.ModelAdmin):
-    list_display = ['nom_utilisateur', 'employee', 'actif', 'derniere_connexion']
-    list_filter = ['actif']
-    search_fields = ['nom_utilisateur', 'employee__nom']
+
 
 @admin.register(JournalActivite)
 class JournalActiviteAdmin(admin.ModelAdmin):

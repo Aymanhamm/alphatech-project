@@ -16,7 +16,7 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
 
-def user_login(request):
+def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -29,10 +29,23 @@ def user_login(request):
             messages.error(request, _('Nom d'utilisateur ou mot de passe incorrect.'))
     return render(request, 'users/login.html')
 
-def user_logout(request):
+@login_required
+def home_view(request):
+    """Home view that displays a welcome message and user information"""
+    context = {
+        'user': request.user,
+        'title': _('Accueil')
+    }
+    return render(request, 'users/home.html', context)
+
+@login_required
+def logout_view(request):
+    """Logout view that logs out the user and redirects to login page"""
     logout(request)
     messages.success(request, _('Vous êtes maintenant déconnecté.'))
     return redirect('login')
+
+# Note: The logout functionality is now handled by logout_view
 
 @login_required
 def profile(request):
